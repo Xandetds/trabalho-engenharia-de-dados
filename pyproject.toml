@@ -4,13 +4,13 @@ version = "0.1.0"
 description = "Projeto Apache Spark com Delta Lake, MinIO e PostgreSQL"
 readme = "README.md"
 authors = [
-    "Alexandre Tibes <>",
+    "Alexandre Tibes <alexandretibes9@gmail.com>",
     "Bruno Monteiro Bonifácio <brunombonifacio@gmail.com>",
     "Gianluca Andrade <siifudeu@gmail.com>",
     "Gustavo de Freitas Cardoso <gustavosatcdoc@gmail.com>",
     "João Miguel Rita <joaomiguelrita01@gmail.com>",
     "Luis Filipe Damiani Colombo <luismiani2@gmail.com>",
-    "Murilo Salvan <murilosalvan@gmail.com>",
+    "Murilo Salvan <mrlslv11@gmail.com>",
     "Roger Balcevicz <rogerbalcevicz@gmail.com>",
 ]
 package-mode = false
