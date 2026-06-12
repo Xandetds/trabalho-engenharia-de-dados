@@ -29,6 +29,8 @@ COPY pyproject.toml poetry.lock* ./
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi
 
+COPY startup /root/.ipython/profile_default/startup/
+
 # Expor a porta do Jupyter Lab
 EXPOSE 8888
 
