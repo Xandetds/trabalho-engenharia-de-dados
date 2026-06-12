@@ -6,7 +6,6 @@ services:
     container_name: trabalho-eng-dados-spark-lab
     ports:
       - "8888:8888" # Jupyter Lab
-      - "4040:4040" # Spark UI
     volumes:
       - .:/app
       - ./data:/app/data
