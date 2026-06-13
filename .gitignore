@@ -16,7 +16,7 @@ derby.log
 metastore_db/
 
 # Jupyter
-.ipynb_checkpoints/
+notebook/.ipynb_checkpoints/**/*
 
 # UV
 uv.lock
@@ -24,4 +24,3 @@ uv.lock
 site
 .Trash*
 
-notebook/.ipynb_checkpoints/**/*
