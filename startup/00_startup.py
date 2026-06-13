@@ -10,9 +10,6 @@ MINIO_ENDPOINT = os.getenv('MINIO_ENDPOINT')
 MINIO_ACCESS_KEY = os.getenv('MINIO_ACCESS_KEY')
 MINIO_SECRET_KEY = os.getenv('MINIO_SECRET_KEY')
 
-if not all([MINIO_ENDPOINT, MINIO_ACCESS_KEY, MINIO_SECRET_KEY]):
-    raise RuntimeError('Variáveis MINIO_* não definidas — confira o .env')
-
 minio = boto3.client(
     's3',
     endpoint_url=MINIO_ENDPOINT,
