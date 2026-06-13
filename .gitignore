@@ -18,9 +18,5 @@ metastore_db/
 # Jupyter
 notebook/.ipynb_checkpoints/**/*
 
-# UV
-uv.lock
-
 site
 .Trash*
-
