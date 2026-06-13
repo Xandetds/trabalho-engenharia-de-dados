@@ -22,3 +22,6 @@ metastore_db/
 uv.lock
 
 site
+.Trash*
+
+notebook/.ipynb_checkpoints/**/*
