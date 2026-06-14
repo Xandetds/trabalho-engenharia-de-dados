@@ -1,2 +1,22 @@
-.Trash*
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.env
+
+# Virtual environments
+.venv
+
+# Spark
+spark-warehouse/
+derby.log
+metastore_db/
+
+# Jupyter
 notebook/.ipynb_checkpoints/**/*
+
+site
+.Trash*
