@@ -1,7 +1,9 @@
 import os
+import boto3
 from pymongo import MongoClient
 from dotenv import load_dotenv
 from pyspark.sql import SparkSession
+from botocore.client import Config
 
 load_dotenv(override=True)
 
