@@ -21,3 +21,6 @@ notebook/.ipynb_checkpoints/**/*
 site
 .Trash*
 notebook/.ipynb_checkpoints/**/*
+
+# Dados brutos locais (não versionar)
+data/landing/
