@@ -198,7 +198,7 @@ Núcleo encarregado da sustentação de Jobs automatizados, agendamentos, orques
   <p>Responsável pelo ecossistema de DataOps e orquestração. Provisionou o Apache Airflow para automação e sequenciamento das tarefas (Jobs) do projeto, assegurando o controle de fluxo, dependências e monitoramento de logs de execução do pipeline.</p>
 
   <h3>Gustavo de Freitas Cardoso</h3>
-  <p>Especialista focado no ciclo de vida e carga dos dados. Atuou no desenvolvimento e refinamento do script de extração e preparação na base de origem. Na camada Gold, implementou a estratégia de versionamento histórico via SCD Tipo 2 para as tabelas dimensões, além de estruturar o controle incremental de dados com Checkpoints voltados para a tabela fato.</p>
+  <p>Especialista responsável por grande parte do desenvolvimento e arquitetura da camada Gold do projeto. Atuou fortemente no ciclo de vida e carga dos dados, implementando a estratégia de versionamento histórico via SCD Tipo 2 para as tabelas dimensões e estruturando o controle incremental com Checkpoints para a tabela fato, além de refinar o script de extração na base de origem</p>
 </div>
 
 ## 🟣 Camadas de Dados e Analytics
@@ -210,7 +210,7 @@ Frente voltada para o ciclo inicial de ingestão da massa bruta, refatoração d
   <p>Focado no mapeamento inicial do Dataset. Construiu a primeira modelagem física e a importação segura da massa de dados brutos TSE para o projeto. Atua no desenvolvimento de scripts Spark dedicados à transformação sistemática de dados entre as camadas Land e Bronze.</p>
 
   <h3>Luis Filipe Damiani Colombo</h3>
-  <p>Responsável pela reestruturação e refatoração visual da documentação técnica e arquitetura de páginas do MkDocs. No contexto analítico de dados, atua no mapeamento de regras de negócios para a modelagem relacional da camada Gold (tabelas de fatos e dimensões normalizadas).</p>
+  <p>Responsável pelo mapeamento inicial do projeto através da localização e validação do dataset bruto (Data Sourcing). No decorrer do desenvolvimento, assumiu a liderança de grande parte da documentação técnica do ecossistema, sendo o encarregado direto pela reestruturação do README principal e pela refatoração visual e arquitetura de páginas na Wiki do MkDocs.</p>
 
   <h3>Murilo Salvan</h3>
   <p>Especialista em Business Intelligence e Analytics. Responsável pela concepção, modelagem conceitual e desenvolvimento do Dashboard analítico do projeto, liderando o fechamento de métricas visuais e preparativos para a apresentação executiva dos dados.</p>
