@@ -183,7 +183,7 @@ Camada responsável pelo ecossistema central, controle de qualidade das branches
 
 <div class="bio-section">
   <h3>Alexandre Tibes da Silva</h3>
-  <p>Fundador e mantenedor principal do repositório, atua na liderança técnica e governança do projeto. Responsável por avaliar e aprovar Pull Requests, além de gerenciar os merges de branches estratégicas. No pipeline, desenvolveu o fluxo de processamento Bronze para Silver, cobrindo as tarefas de limpeza e normalização, além do pipeline de ingestão da base de origem para a camada Landing.</p>
+  <p>Fundador e mantenedor principal do repositório, atua na liderança técnica e governança do projeto. Responsável por avaliar e aprovar Pull Requests, além de gerenciar os merges de branches estratégicas. No pipeline, desenvolveu a ingestão da base de origem para a camada Landing.</p>
 
   <h3>Bruno Monteiro Bonifacio</h3>
   <p>Arquiteto encarregado pelo provisionamento estrutural da plataforma. Desenhou e configurou a infraestrutura do Object Storage (MinIO) e orquestrou o ambiente integrado do Jupyter Notebook acoplado ao PySpark. Responsável também por redigir e manter os guias oficiais de documentação técnica para configuração de acessos e storage do time.</p>
