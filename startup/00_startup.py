@@ -1,6 +1,5 @@
 import os
 import boto3
-from pymongo import MongoClient
 from dotenv import load_dotenv
 from pyspark.sql import SparkSession
 from botocore.client import Config
@@ -40,10 +39,3 @@ spark = (
 sc = spark.sparkContext
 
 del MINIO_ENDPOINT, MINIO_ACCESS_KEY, MINIO_SECRET_KEY
-
-uri = os.getenv("MONGO_URI")
-db_name = os.getenv("MONGO_DB_NAME")
-client = MongoClient(uri)
-db = client[db_name]
-
-del db_name, uri, client
