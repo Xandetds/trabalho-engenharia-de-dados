@@ -11,6 +11,7 @@ Certifique-se de que o Docker Desktop esteja aberto. No terminal, execute o coma
 ```bash
 docker-compose up -d --build
 ```
+A partir daí, o Jupyter Lab já está disponível em ```http://localhost:8888``` para manipulação e utilização dos notebooks Jupyter.
 
 ## Monitoramento dos Serviços
 Após a inicialização do container, você poderá acessar os consoles administrativos através das portas locais mapeadas:
@@ -18,5 +19,3 @@ Após a inicialização do container, você poderá acessar os consoles administ
 - MinIO Console: ```http://localhost:9001```
 
 - Apache Airflow Webserver: ```http://localhost:8080```
-
-- Spark Master UI: ```http://localhost:4040```
