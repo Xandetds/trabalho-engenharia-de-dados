@@ -45,3 +45,14 @@ O MinIO é um servidor de armazenamento de objetos compatível com a API S3 da A
 A ponte entre o Spark e o MinIO é o conector S3A do Hadoop (`spark.hadoop.fs.s3a.*`): o Spark é apontado para o endpoint do MinIO dentro da rede do Docker (ex.: `http://minio:9000`), com `path.style.access` habilitado e SSL desligado por ser um ambiente local. Com isso, um caminho `s3a://bucket/camada/...` é tratado pelo Spark como se fosse o S3 da AWS, e cada camada do medalhão grava sua tabela Delta no bucket correspondente.
 
 Para operações fora do Spark — criar buckets, listar ou inspecionar objetos — também há um cliente boto3 (`minio`) disponível nos notebooks, apontando para o mesmo endpoint. O console web do MinIO fica em `http://localhost:9021` e a API S3 publicada no host em `http://localhost:9020`.
+
+## 3. Ambiente containerizado (Docker)
+
+Todo o ambiente é provisionado com Docker, o que garante reprodutibilidade: qualquer integrante sobe a mesma stack com um único comando, sem instalar Spark, Java ou dependências na máquina. O `docker-compose.yml` orquestra dois serviços:
+
+- `spark-lab` — a imagem do Jupyter Lab + PySpark, construída a partir de `docker/Dockerfile`. Ela já traz o JRE necessário para o Spark e as dependências do projeto (instaladas via Poetry no build), além dos scripts de bootstrap que preparam a `SparkSession` e as conexões a cada início de kernel.
+- `minio` — o servidor de object storage, com os dados persistidos em um volume nomeado para sobreviver entre execuções dos containers.
+
+Os dois serviços compartilham a mesma rede do Compose, o que permite o Spark acessar o MinIO pelo nome do serviço (ex.: `http://minio:9000`) em vez da porta publicada no host.
+
+O passo a passo para subir o ambiente (comandos, variáveis de ambiente e portas) está na seção [Setup](../setup/index.md).
