@@ -2,7 +2,16 @@
 name = "dashboard-tse"
 version = "0.1.0"
 description = "Dashboard Streamlit para visualizacao dos dados da camada Gold"
-authors = ["Gurizes da eng. de dados"]
+authors = [
+    "Alexandre Tibes <alexandretibes9@gmail.com>",
+    "Bruno Monteiro Bonifácio <brunombonifacio@gmail.com>",
+    "Gianluca Andrade <siifudeu@gmail.com>",
+    "Gustavo de Freitas Cardoso <gustavosatcdoc@gmail.com>",
+    "João Miguel Rita <joaomiguelrita01@gmail.com>",
+    "Luis Filipe Damiani Colombo <luismiani2@gmail.com>",
+    "Murilo Salvan <mrlslv11@gmail.com>",
+    "Roger Balcevicz <rogerbalcevicz@gmail.com>",
+]
 package-mode = false
 
 [tool.poetry.dependencies]
