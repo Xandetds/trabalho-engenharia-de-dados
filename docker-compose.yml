@@ -4,6 +4,8 @@ services:
       context: .
       dockerfile: docker/Dockerfile
     container_name: trabalho-eng-dados-spark-lab
+    env_file:
+      - .env
     ports:
       - "8888:8888" # Jupyter Lab
     volumes:
@@ -14,6 +16,46 @@ services:
       - PYTHONPATH=/app
     stdin_open: true
     tty: true
+  airflow:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.airflow
+    container_name: trabalho-eng-dados-airflow
+    env_file:
+      - .env
+    depends_on:
+      - minio
+    ports:
+      - "8080:8080" # Airflow UI
+    volumes:
+      - .:/app
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+    working_dir: /app
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
+      - AIRFLOW__CORE__LOAD_EXAMPLES=false
+      - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=true
+      - AIRFLOW__WEBSERVER__EXPOSE_CONFIG=true
+      - AIRFLOW_ADMIN_USER=${AIRFLOW_ADMIN_USER:-admin}
+      - AIRFLOW_ADMIN_PASSWORD=${AIRFLOW_ADMIN_PASSWORD:-admin}
+      - SPARK_HOME=/home/airflow/.local/lib/python3.11/site-packages/pyspark
+      - PYTHONPATH=/app
+    command:
+      - bash
+      - -c
+      - |
+        set -e
+        airflow db migrate
+        airflow users create \
+          --username "$${AIRFLOW_ADMIN_USER:-admin}" \
+          --password "$${AIRFLOW_ADMIN_PASSWORD:-admin}" \
+          --firstname Engenharia \
+          --lastname Dados \
+          --role Admin \
+          --email admin@example.com || true
+        airflow scheduler &
+        exec airflow webserver --port 8080
   minio:
     image: minio/minio:RELEASE.2025-02-03T21-03-04Z
     container_name: trabalho-eng-dados-minio
