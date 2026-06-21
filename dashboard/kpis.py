@@ -27,3 +27,21 @@ def calculate_total_parties(records: Iterable[dict]) -> int:
     }
 
     return len(party_ids)
+
+
+def calculate_total_municipalities(records: Iterable[dict]) -> int:
+    municipality_ids = {
+        record.get("sigla_ue")
+        or record.get("SIGLA_UE")
+        or record.get("sg_ue")
+        or record.get("SG_UE")
+        for record in records
+        if (
+            record.get("sigla_ue")
+            or record.get("SIGLA_UE")
+            or record.get("sg_ue")
+            or record.get("SG_UE")
+        )
+    }
+
+    return len(municipality_ids)

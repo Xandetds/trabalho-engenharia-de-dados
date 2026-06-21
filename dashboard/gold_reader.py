@@ -3,11 +3,13 @@ import csv
 import io
 import json
 
+import pandas as pd
+
 from minio_connection import get_minio_client
 
 
 GOLD_BUCKET = os.getenv("MINIO_GOLD_BUCKET", "gold")
-GOLD_PREFIX = os.getenv("MINIO_GOLD_PREFIX", "")
+GOLD_PREFIX = os.getenv("MINIO_GOLD_PREFIX", "tse")
 EXPECTED_GOLD_TABLES = (
     "fato_candidatura_dashboard",
     "fato_bem_candidato_dashboard",
@@ -72,6 +74,9 @@ def read_gold_table_records(table_name: str) -> list[dict]:
         elif key.endswith(".csv"):
             text = content.decode("utf-8-sig")
             records.extend(csv.DictReader(io.StringIO(text)))
+        elif key.endswith(".parquet"):
+            dataframe = pd.read_parquet(io.BytesIO(content))
+            records.extend(dataframe.to_dict(orient="records"))
 
     return records
 
