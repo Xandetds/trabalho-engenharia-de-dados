@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "dashboard-tse"
+version = "0.1.0"
+description = "Dashboard Streamlit para visualizacao dos dados da camada Gold"
+authors = ["Gurizes da eng. de dados"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+streamlit = "^1.46.0"
+boto3 = ">=1.34.0"
+python-dotenv = ">=1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
