@@ -1,4 +1,5 @@
 from collections.abc import Iterable
+from collections import defaultdict
 from decimal import Decimal, InvalidOperation
 from numbers import Number
 
@@ -76,3 +77,35 @@ def calculate_total_declared_assets(records: Iterable[dict]) -> Decimal:
             continue
 
     return total_assets
+
+
+def calculate_candidates_by_office(candidate_records: Iterable[dict], office_records: Iterable[dict]) -> list[dict]:
+    office_descriptions = {}
+
+    for record in office_records:
+        office_code = record.get("codigo_cargo") or record.get("CODIGO_CARGO")
+        office_description = record.get("descricao_cargo") or record.get("DESCRICAO_CARGO")
+
+        if office_code and office_description:
+            office_descriptions[str(office_code)] = str(office_description)
+
+    candidates_by_office = defaultdict(set)
+
+    for record in candidate_records:
+        candidate_id = record.get("sq_candidato") or record.get("SQ_CANDIDATO")
+        office_code = record.get("codigo_cargo") or record.get("CODIGO_CARGO")
+
+        if not candidate_id or not office_code:
+            continue
+
+        candidates_by_office[str(office_code)].add(candidate_id)
+
+    result = [
+        {
+            "cargo": office_descriptions.get(office_code, f"Cargo {office_code}"),
+            "total_candidatos": len(candidate_ids),
+        }
+        for office_code, candidate_ids in candidates_by_office.items()
+    ]
+
+    return sorted(result, key=lambda item: item["total_candidatos"], reverse=True)
