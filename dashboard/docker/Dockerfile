@@ -20,6 +20,7 @@ COPY pyproject.toml poetry.lock* ./
 
 # Instalar dependências via Poetry (sem criar ambiente virtual dentro do container)
 RUN poetry config virtualenvs.create false \
+    && poetry lock --no-update --no-interaction \
     && poetry install --no-interaction --no-ansi
 
 COPY . ./

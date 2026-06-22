@@ -9,6 +9,8 @@ services:
     volumes:
       - .:/app
       - ./data:/app/data
+    env_file:
+      - .env
     environment:
       - SPARK_HOME=/usr/local/lib/python3.11/site-packages/pyspark
       - PYTHONPATH=/app
