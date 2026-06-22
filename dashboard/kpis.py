@@ -54,27 +54,12 @@ def calculate_total_declared_assets(records: Iterable[dict]) -> Decimal:
     total_assets = Decimal("0")
 
     for record in records:
-        asset_value = (
+        total_assets += parse_decimal_value(
             record.get("valor_bem_candidato")
             or record.get("VALOR_BEM_CANDIDATO")
             or record.get("valor")
             or record.get("VALOR")
         )
-
-        if asset_value in (None, ""):
-            continue
-
-        try:
-            if isinstance(asset_value, Number):
-                total_assets += Decimal(str(asset_value))
-            else:
-                normalized_value = str(asset_value).strip()
-                if "," in normalized_value:
-                    normalized_value = normalized_value.replace(".", "").replace(",", ".")
-
-                total_assets += Decimal(normalized_value)
-        except (InvalidOperation, ValueError):
-            continue
 
     return total_assets
 
@@ -109,3 +94,87 @@ def calculate_candidates_by_office(candidate_records: Iterable[dict], office_rec
     ]
 
     return sorted(result, key=lambda item: item["total_candidatos"], reverse=True)
+
+
+def calculate_assets_by_party(
+    candidate_records: Iterable[dict],
+    asset_records: Iterable[dict],
+    party_records: Iterable[dict],
+) -> list[dict]:
+    candidate_parties = {}
+
+    for record in candidate_records:
+        candidate_id = record.get("sq_candidato") or record.get("SQ_CANDIDATO")
+        party_id = (
+            record.get("numero_partido")
+            or record.get("NUMERO_PARTIDO")
+            or record.get("nr_partido")
+            or record.get("NR_PARTIDO")
+        )
+
+        if candidate_id and party_id:
+            candidate_parties[str(candidate_id)] = str(party_id)
+
+    party_names = {}
+
+    for record in party_records:
+        party_id = (
+            record.get("numero_partido")
+            or record.get("NUMERO_PARTIDO")
+            or record.get("nr_partido")
+            or record.get("NR_PARTIDO")
+        )
+        party_name = (
+            record.get("sigla_partido")
+            or record.get("SIGLA_PARTIDO")
+            or record.get("nome_partido")
+            or record.get("NOME_PARTIDO")
+        )
+
+        if party_id and party_name:
+            party_names[str(party_id)] = str(party_name)
+
+    assets_by_party = defaultdict(Decimal)
+
+    for record in asset_records:
+        candidate_id = record.get("sq_candidato") or record.get("SQ_CANDIDATO")
+        party_id = candidate_parties.get(str(candidate_id))
+
+        if not party_id:
+            continue
+
+        asset_value = (
+            record.get("valor_bem_candidato")
+            or record.get("VALOR_BEM_CANDIDATO")
+            or record.get("valor")
+            or record.get("VALOR")
+        )
+
+        assets_by_party[party_id] += parse_decimal_value(asset_value)
+
+    result = [
+        {
+            "partido": party_names.get(party_id, f"Partido {party_id}"),
+            "patrimonio_declarado": total_assets,
+        }
+        for party_id, total_assets in assets_by_party.items()
+    ]
+
+    return sorted(result, key=lambda item: item["patrimonio_declarado"], reverse=True)
+
+
+def parse_decimal_value(value) -> Decimal:
+    if value in (None, ""):
+        return Decimal("0")
+
+    try:
+        if isinstance(value, Number):
+            return Decimal(str(value))
+
+        normalized_value = str(value).strip()
+        if "," in normalized_value:
+            normalized_value = normalized_value.replace(".", "").replace(",", ".")
+
+        return Decimal(normalized_value)
+    except (InvalidOperation, ValueError):
+        return Decimal("0")
