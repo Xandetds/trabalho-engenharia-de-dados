@@ -8,7 +8,7 @@ from gold_reader import (
     read_gold_sample,
     read_gold_table_records,
 )
-from kpis import calculate_total_candidates
+from kpis import calculate_total_candidates, calculate_total_parties
 from minio_connection import list_buckets
 
 st.set_page_config(
@@ -25,6 +25,7 @@ try:
     gold_sample = read_gold_sample()
     candidate_records = read_gold_table_records("fato_candidatura_dashboard")
     total_candidates = calculate_total_candidates(candidate_records)
+    total_parties = calculate_total_parties(candidate_records)
 
     components.html(
         f"""
@@ -35,6 +36,7 @@ try:
         console.log("Objetos encontrados na camada Gold:", {json.dumps(gold_objects)});
         console.log("Amostra lida da camada Gold:", {json.dumps(gold_sample)});
         console.log("Total de candidatos:", {json.dumps(total_candidates)});
+        console.log("Total de partidos:", {json.dumps(total_parties)});
         </script>
         """,
         height=0,
@@ -42,10 +44,17 @@ try:
 
     st.subheader("KPIs")
 
+    kpi_candidates, kpi_parties = st.columns(2)
+
     if total_candidates:
-        st.metric("Total de candidatos", f"{total_candidates:,}".replace(",", "."))
+        kpi_candidates.metric("Total de candidatos", f"{total_candidates:,}".replace(",", "."))
     else:
         st.warning("Tabela `fato_candidatura_dashboard` ainda não possui dados legíveis para calcular o KPI.")
+
+    if total_parties:
+        kpi_parties.metric("Total de partidos", f"{total_parties:,}".replace(",", "."))
+    else:
+        st.warning("Tabela `fato_candidatura_dashboard` ainda não possui partidos legíveis para calcular o KPI.")
 except Exception as error:
     components.html(
         f"""
