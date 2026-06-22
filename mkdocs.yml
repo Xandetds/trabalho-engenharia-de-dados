@@ -1,0 +1,103 @@
+site_name: Engenharia de Dados · SATC
+site_description: Pipeline de dados end-to-end com Apache Spark, Delta Lake, MinIO e MongoDB — Projeto Final da disciplina de Engenharia de Dados da Unisatc.
+site_author: Grupo Engenharia de Dados SATC
+repo_url: https://github.com/Xandetds/trabalho-engenharia-de-dados
+repo_name: Xandetds/trabalho-engenharia-de-dados
+edit_uri: edit/master/docs/
+
+theme:
+  name: material
+  language: pt-BR
+  logo: images/logo.png
+  favicon: images/logo.png
+  font:
+    text: Inter
+    code: JetBrains Mono
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Alternar para modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Alternar para modo claro
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - toc.integrate
+    - search.highlight
+    - search.suggest
+    - search.share
+    - content.tabs.link
+    - content.code.copy
+    - content.code.annotate
+
+nav:
+  - Início: index.md
+  - Arquitetura:
+    - architecture/index.md
+    - Visão Geral: architecture/overview.md
+    - Medalhão (Camadas): architecture/medallion.md
+  - Setup:
+    - setup/index.md
+    - Pré-requisitos: setup/prerequisites.md
+    - Rodando o Projeto: setup/running.md
+  - Pipeline:
+    - pipeline/index.md
+    - Origem → Landing: pipeline/landing.md
+    - Landing → Bronze: pipeline/bronze.md
+    - Bronze → Silver: pipeline/silver.md
+    - Silver → Gold: pipeline/gold.md
+  - Dashboard: dashboard.md
+  - Equipe: team.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      title: Nesta página
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.details
+  - pymdownx.snippets
+
+plugins:
+  - search:
+      lang: pt
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Xandetds/trabalho-engenharia-de-dados
+      name: Repositório no GitHub
+  generator: false
