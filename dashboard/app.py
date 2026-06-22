@@ -9,6 +9,7 @@ from gold_reader import (
     read_gold_table_records,
 )
 from kpis import (
+    calculate_candidates_by_office,
     calculate_total_candidates,
     calculate_total_declared_assets,
     calculate_total_municipalities,
@@ -30,10 +31,12 @@ try:
     gold_sample = read_gold_sample()
     candidate_records = read_gold_table_records("fato_candidatura_dashboard")
     asset_records = read_gold_table_records("fato_bem_candidato_dashboard")
+    office_records = read_gold_table_records("dim_cargo")
     total_candidates = calculate_total_candidates(candidate_records)
     total_parties = calculate_total_parties(candidate_records)
     total_municipalities = calculate_total_municipalities(candidate_records)
     total_declared_assets = calculate_total_declared_assets(asset_records)
+    candidates_by_office = calculate_candidates_by_office(candidate_records, office_records)
 
     components.html(
         f"""
@@ -47,6 +50,7 @@ try:
         console.log("Total de partidos:", {json.dumps(total_parties)});
         console.log("Total de municípios:", {json.dumps(total_municipalities)});
         console.log("Total de bens declarados:", {json.dumps(str(total_declared_assets))});
+        console.log("Candidatos por cargo:", {json.dumps(candidates_by_office)});
         </script>
         """,
         height=0,
@@ -76,6 +80,14 @@ try:
         kpi_declared_assets.metric("Bens declarados", formatted_assets)
     else:
         st.warning("Tabela `fato_bem_candidato_dashboard` ainda não possui bens legíveis para calcular o KPI.")
+
+    st.subheader("Candidatos por cargo")
+
+    if candidates_by_office:
+        for item in candidates_by_office:
+            st.write(f"{item['cargo']}: {item['total_candidatos']:,}".replace(",", "."))
+    else:
+        st.warning("Tabelas `fato_candidatura_dashboard` e `dim_cargo` ainda não possuem cargos legíveis.")
 except Exception as error:
     components.html(
         f"""
