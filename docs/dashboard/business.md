@@ -1,9 +1,9 @@
 # Explicação Negócio e Contexto Eleitoral
 
-O dashboard consolida os indicadores finais sobre o panorama das candidaturas eleitorais brasileiras. A lógica de negócio consiste em extrair os dados brutos de registros e prestações de contas, validar as informações transacionais contra as coleções armazenadas no MongoDB Atlas, e estruturar métricas agregadas por partido, cargo e região. 
-
+O dashboard consolida os indicadores finais sobre o panorama das candidaturas eleitorais brasileiras. A lógica de negócio consiste em extrair os dados brutos de registros e prestações de contas, validar as informações transacionais contra as coleções armazenadas no MongoDB Atlas, e estruturar métricas agregadas por partido, cargo e região.
+ 
 Esses dados limpos e enriquecidos são armazenados na camada **Gold** do Data Lake (MinIO) no formato Parquet, permitindo que o painel Streamlit realize consultas analíticas rápidas de alto desempenho sem sobrecarregar os sistemas operacionais originais.
----
+
 
 ## Tabelas Gold consumidas
 
