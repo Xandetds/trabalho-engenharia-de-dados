@@ -50,6 +50,7 @@ nav:
     - architecture/index.md
     - Visão Geral: architecture/overview.md
     - Medalhão (Camadas): architecture/medallion.md
+    - Orquestração: architecture/orchestration.md
   - Setup:
     - setup/index.md
     - Pré-requisitos: setup/prerequisites.md
