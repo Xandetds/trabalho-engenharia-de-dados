@@ -14,7 +14,10 @@ from airflow.operators.python import PythonOperator
 
 PROJECT_ROOT = Path("/app")
 NOTEBOOK_DIR = PROJECT_ROOT / "notebook"
-OUTPUT_DIR = NOTEBOOK_DIR / "output"
+# Saída do papermill em volume nomeado (gravável pelo airflow, independente do UID do host).
+OUTPUT_DIR = Path("/opt/airflow/papermill-output")
+# Scratch local do Spark (spark-warehouse/, derby.log, metastore_db/) — efêmero, fora do /app montado.
+SPARK_SCRATCH = Path("/tmp/spark-scratch")
 
 NOTEBOOK_SEQUENCE = [
     "00_setup_buckets.ipynb",
@@ -40,11 +43,13 @@ def run_notebook(notebook_name: str, **context) -> str:
     output_folder.mkdir(parents=True, exist_ok=True)
     output_path = output_folder / f"{logical_date}_{run_id}.ipynb"
 
+    SPARK_SCRATCH.mkdir(parents=True, exist_ok=True)
+
     pm.execute_notebook(
         input_path=str(input_path),
         output_path=str(output_path),
         kernel_name="python3",
-        cwd=str(PROJECT_ROOT),
+        cwd=str(SPARK_SCRATCH),
         parameters={
             "airflow_run_id": context["run_id"],
             "airflow_logical_date": context["logical_date"].isoformat(),

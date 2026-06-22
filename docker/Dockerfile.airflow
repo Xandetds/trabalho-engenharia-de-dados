@@ -15,6 +15,10 @@ ENV PATH="${PATH}:${JAVA_HOME}/bin"
 
 USER airflow
 
+# Criado como airflow para que o volume nomeado montado aqui (docker-compose)
+# herde a posse 50000:0 e seja gravável pelo papermill, independente do UID do host.
+RUN mkdir -p /opt/airflow/papermill-output
+
 COPY docker/airflow-requirements.txt /tmp/airflow-requirements.txt
 RUN pip install --no-cache-dir -r /tmp/airflow-requirements.txt
 
