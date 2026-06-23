@@ -17,33 +17,9 @@ Projeto desenvolvido para a disciplina de Engenharia de Dados, focado na constru
 
 ## Arquitetura do Ecossistema
 
-O fluxo de dados foi desenhado para garantir isolamento e qualidade da informação em cada etapa da jornada analítica:
+O fluxo de dados foi desenhado seguindo a Arquitetura Medalhão (Medallion Architecture), garantindo isolamento, governança e alta qualidade da informação em cada etapa da jornada analítica:
 
-```mermaid
-graph LR
-    %% Fontes e Destinos
-    Origem[(MongoDB Atlas <br> Origem NoSQL)]
-    Landing[Landing Zone <br> JSON Bruto]
-    Bronze[Camada Bronze <br> Delta Lake]
-    Silver[Camada Silver <br> Delta Lake]
-    Gold[Camada Gold <br> Star Schema]
-    Dash[Dashboard <br> Streamlit]
-
-    %% Conexões e Processamento
-    Origem -->|01_landing.ipynb| Landing
-    Landing -->|02_bronze.ipynb <br> Tipagem e Metadados| Bronze
-    Bronze -->|03_silver.ipynb <br> Limpeza e Padronização| Silver
-    Silver -->|04_gold.ipynb <br> Agregação e Relacionamento| Gold
-    Gold -.->|Leitura Direta| Dash
-
-    %% Estilos para Dark Mode
-    style Origem fill:#1B5E20,stroke:#4CAF50,stroke-width:2px,color:#FFF
-    style Landing fill:#303030,stroke:#9E9E9E,stroke-width:2px,color:#FFF
-    style Bronze fill:#4E342E,stroke:#A1887F,stroke-width:2px,color:#FFF
-    style Silver fill:#37474F,stroke:#90A4AE,stroke-width:2px,color:#FFF
-    style Gold fill:#F9A825,stroke:#FFF176,stroke-width:2px,color:#111
-    style Dash fill:#B71C1C,stroke:#E57373,stroke-width:2px,color:#FFF
-```
+![Arquitetura da Pipeline de Dados TSE - Medalhão](docs/images/architecture.png)
 
 ## Tecnologias Utilizadas
 - **Apache Spark (PySpark):** Engine principal de processamento distribuído das transformações.
