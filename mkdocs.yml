@@ -56,6 +56,7 @@ nav:
     - Rodando o Projeto: setup/running.md
   - Pipeline:
     - pipeline/index.md
+    - Setup Infraestrutura: pipeline/setup.md
     - Origem → Landing: pipeline/landing.md
     - Landing → Bronze: pipeline/bronze.md
     - Bronze → Silver: pipeline/silver.md
