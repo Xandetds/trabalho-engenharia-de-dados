@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "dashboard-tse"
+version = "0.1.0"
+description = "Dashboard Streamlit para visualizacao dos dados da camada Gold"
+authors = [
+    "Alexandre Tibes <alexandretibes9@gmail.com>",
+    "Bruno Monteiro Bonifácio <brunombonifacio@gmail.com>",
+    "Gianluca Andrade <siifudeu@gmail.com>",
+    "Gustavo de Freitas Cardoso <gustavosatcdoc@gmail.com>",
+    "João Miguel Rita <joaomiguelrita01@gmail.com>",
+    "Luis Filipe Damiani Colombo <luismiani2@gmail.com>",
+    "Murilo Salvan <mrlslv11@gmail.com>",
+    "Roger Balcevicz <rogerbalcevicz@gmail.com>",
+]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+streamlit = "^1.46.0"
+boto3 = ">=1.34.0"
+python-dotenv = ">=1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
