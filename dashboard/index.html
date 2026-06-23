@@ -16,7 +16,7 @@
         <link rel="prev" href="../pipeline/gold/">
       
       
-        <link rel="next" href="../team/">
+        <link rel="next" href="business/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Dashboard - Engenharia de Dados · SATC</title>
+        <title>Introdução - Engenharia de Dados · SATC</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dashboard" class="md-skip">
+        <a href="#o-que-e-o-dashboard" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Dashboard
+              Introdução
             
           </span>
         </div>
@@ -311,17 +311,20 @@
     
   
   
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
   
   
     
   
   Dashboard
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -440,6 +443,8 @@
       
         
       
+        
+      
     
     
     
@@ -539,6 +544,34 @@
     
   
     Medalhão (Camadas)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/orchestration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orquestração
   
 
     
@@ -716,6 +749,8 @@
       
         
       
+        
+      
     
     
     
@@ -770,6 +805,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Infraestrutura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -899,16 +962,39 @@
   
   
   
-    <li class="md-nav__item md-nav__item--active">
+    
+    
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
       
       
         
       
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
-      <a href="./" class="md-nav__link md-nav__link--active">
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="./" class="md-nav__link md-nav__link--active">
+              
   
   
   <span class="md-ellipsis">
@@ -922,7 +1008,86 @@
   
   
 
+            </a>
+            
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dashboard
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="business/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explicação de Negócio
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="technical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explicação Técnica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -975,8 +1140,31 @@
   
 
 
-<h1 id="dashboard">Dashboard<a class="headerlink" href="#dashboard" title="Permanent link">&para;</a></h1>
-<p>Em construção.</p>
+<h1 id="o-que-e-o-dashboard">O que é o Dashboard?<a class="headerlink" href="#o-que-e-o-dashboard" title="Permanent link">&para;</a></h1>
+<p>O Dashboard é uma aplicação web interativa construída em <strong>Streamlit</strong> que atua como a camada de entrega final (<strong>One Page View</strong>) do projeto. Ele foi projetado para consumir diretamente as tabelas fato e dimensão agregadas que passaram por todo o processo de extração, limpeza e enriquecimento ao longo da nossa esteira de dados.</p>
+<h3 id="principais-objetivos-do-painel">Principais Objetivos do Painel:<a class="headerlink" href="#principais-objetivos-do-painel" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Facilidade de Acesso:</strong> Apresentar uma visão unificada dos dados eleitorais sem a necessidade de interações diretas com os bancos de dados por parte do usuário final.</li>
+<li><strong>Decisões Baseadas em Dados:</strong> Permitir a filtragem dinâmica de candidaturas, partidos e faturamentos para análise de cenários eleitorais.</li>
+<li><strong>Consumo Eficiente:</strong> Ler de forma otimizada os arquivos estruturados gerados pelo ecossistema de processamento distribuído.</li>
+</ul>
+<hr />
+<h2 id="estrutura-da-documentacao">Estrutura da Documentação<a class="headerlink" href="#estrutura-da-documentacao" title="Permanent link">&para;</a></h2>
+<p>Para facilitar a navegação e o entendimento do projeto pelos desenvolvedores e membros da equipe, a documentação foi dividida nos seguintes módulos:</p>
+<ul>
+<li><a href="./">Apresentação</a>: Visão geral da ferramenta e proposta de valor do painel.</li>
+<li><a href="business/">Explicação Negócio e Contexto Eleitoral</a>:** Análise do contexto eleitoral, lógica de consolidação de métricas e detalhamento das regras de negócio aplicadas.</li>
+<li><a href="technical/">Documentação Técnica</a>:<em><em> Detalhamento da arquitetura de software, estrutura de desenvolvimento baseada em </em>branches</em> isoladas, configuração do ambiente Docker, integração do Jupyter Notebook e guia de execução unificada via Compose.  </li>
+</ul>
+<hr />
+<h2 id="tecnologias-principais-da-solucao">Tecnologias Principais da Solução<a class="headerlink" href="#tecnologias-principais-da-solucao" title="Permanent link">&para;</a></h2>
+<p>O ecossistema que suporta este dashboard é composto pelas seguintes tecnologias integradas:</p>
+<ul>
+<li><strong>Streamlit:</strong> Framework em Python utilizado para a criação rápida da interface web e renderização dos gráficos analíticos.</li>
+<li><strong>Docker:</strong> Tecnologia de conteinerização utilizada para isolar a aplicação, garantindo que o dashboard rode com o mesmo comportamento em qualquer máquina de desenvolvimento.</li>
+<li><strong>MinIO:</strong> Servidor de armazenamento de objetos de alta performance que simula nosso Data Lake local, guardando os arquivos estruturados da camada Gold.</li>
+<li><strong>MongoDB Atlas:</strong> Banco de dados NoSQL baseado em nuvem utilizado para armazenar e consultar metadados cruciais e coleções dinâmicas do projeto.</li>
+</ul>
 
 
 
@@ -1031,13 +1219,13 @@
         
         
           
-          <a href="../team/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Equipe">
+          <a href="business/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Explicação de Negócio">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Próximo
               </span>
               <div class="md-ellipsis">
-                Equipe
+                Explicação de Negócio
               </div>
             </div>
             <div class="md-footer__button md-icon">

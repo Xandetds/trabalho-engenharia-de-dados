@@ -16,7 +16,7 @@
         <link rel="prev" href="../setup/running/">
       
       
-        <link rel="next" href="landing/">
+        <link rel="next" href="setup/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Pipeline - Engenharia de Dados · SATC</title>
+        <title>Visão Geral do Pipeline de Dados - Engenharia de Dados · SATC</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#pipeline" class="md-skip">
+        <a href="#visao-geral-do-pipeline-de-dados" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Pipeline
+              Visão Geral do Pipeline de Dados
             
           </span>
         </div>
@@ -311,17 +311,20 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../dashboard/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../dashboard/" class="md-tabs__link">
+          
   
   
     
   
   Dashboard
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -440,6 +443,8 @@
       
         
       
+        
+      
     
     
     
@@ -539,6 +544,34 @@
     
   
     Medalhão (Camadas)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/orchestration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orquestração
   
 
     
@@ -718,6 +751,8 @@
       
         
       
+        
+      
     
     
     
@@ -773,6 +808,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Infraestrutura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -900,9 +963,38 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../dashboard/" class="md-nav__link">
+    
+    
+      
         
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../dashboard/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -916,7 +1008,87 @@
   
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dashboard
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dashboard/business/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explicação de Negócio
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dashboard/technical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explicação Técnica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -968,8 +1140,70 @@
   
 
 
-<h1 id="pipeline">Pipeline<a class="headerlink" href="#pipeline" title="Permanent link">&para;</a></h1>
-<p>Em construção.</p>
+<h1 id="visao-geral-do-pipeline-de-dados">Visão Geral do Pipeline de Dados<a class="headerlink" href="#visao-geral-do-pipeline-de-dados" title="Permanent link">&para;</a></h1>
+<p>Bem-vindo à documentação do <em>Pipeline de Engenharia de Dados</em>. Esta seção detalha a esteira de processamento responsável por extrair os dados eleitorais brutos, tratá-los e disponibilizá-los para análise final.</p>
+<p>Nosso fluxo de dados foi construído seguindo os princípios da <em>Arquitetura Medalhão (Medallion Architecture)</em>, que divide o Data Lake em camadas lógicas progressivas de qualidade e agregação (Landing, Bronze, Silver e Gold).</p>
+<hr />
+<h2 id="arquitetura-e-fluxo-de-dados">Arquitetura e Fluxo de Dados<a class="headerlink" href="#arquitetura-e-fluxo-de-dados" title="Permanent link">&para;</a></h2>
+<p>O diagrama abaixo ilustra o caminho que a informação percorre desde a origem no banco de dados NoSQL até a entrega estruturada para o Dashboard:</p>
+<pre class="mermaid"><code>graph LR
+    %% Fontes e Destinos
+    Origem[(MongoDB Atlas &lt;br&gt; Origem NoSQL)]
+    Landing[Landing Zone &lt;br&gt; JSON Bruto]
+    Bronze[Camada Bronze &lt;br&gt; Delta Lake]
+    Silver[Camada Silver &lt;br&gt; Delta Lake]
+    Gold[Camada Gold &lt;br&gt; Star Schema]
+    Dash[Dashboard &lt;br&gt; Streamlit]
+
+    %% Conexões e Processamento
+    Origem --&gt;|01_landing.ipynb| Landing
+    Landing --&gt;|02_bronze.ipynb &lt;br&gt; Tipagem e Metadados| Bronze
+    Bronze --&gt;|03_silver.ipynb &lt;br&gt; Limpeza e Padronização| Silver
+    Silver --&gt;|04_gold.ipynb &lt;br&gt; Agregação e Relacionamento| Gold
+    Gold -.-&gt;|Leitura Direta| Dash
+
+    %% Estilos para Dark Mode
+    style Origem fill:#1B5E20,stroke:#4CAF50,stroke-width:2px,color:#FFF
+    style Landing fill:#303030,stroke:#9E9E9E,stroke-width:2px,color:#FFF
+    style Bronze fill:#4E342E,stroke:#A1887F,stroke-width:2px,color:#FFF
+    style Silver fill:#37474F,stroke:#90A4AE,stroke-width:2px,color:#FFF
+    style Gold fill:#F9A825,stroke:#FFF176,stroke-width:2px,color:#111
+    style Dash fill:#B71C1C,stroke:#E57373,stroke-width:2px,color:#FFF</code></pre>
+<h2 id="stack-tecnologica-de-processamento">Stack Tecnológica de Processamento<a class="headerlink" href="#stack-tecnologica-de-processamento" title="Permanent link">&para;</a></h2>
+<p>A esteira de dados foi desenvolvida em Jupyter Notebooks (Spark-Lab), utilizando as seguintes tecnologias principais:</p>
+<ul>
+<li>
+<p><em>PySpark:</em> Motor de processamento distribuído utilizado nas camadas Bronze, Silver e Gold para leitura, transformação de schemas, limpeza de strings e escrita otimizada em larga escala.</p>
+</li>
+<li>
+<p><em>PyMongo:</em> Biblioteca utilizada para a extração nativa das coleções hospedadas na nuvem do MongoDB Atlas.</p>
+</li>
+<li>
+<p><em>Delta Lake:</em> Formato de armazenamento de código aberto adotado a partir da camada Bronze, garantindo confiabilidade (transações ACID) e alta performance nas consultas.</p>
+</li>
+<li>
+<p><em>MinIO (boto3 / S3-compatible):</em> Storage local de objetos utilizado para acomodar fisicamente os buckets de todas as camadas do Data Lake.</p>
+</li>
+</ul>
+<h2 id="estrutura-da-esteira">Estrutura da Esteira<a class="headerlink" href="#estrutura-da-esteira" title="Permanent link">&para;</a></h2>
+<p>O processamento ocorre de forma sequencial. Explore o menu lateral para entender as regras técnicas e lógicas aplicadas em cada etapa:</p>
+<ul>
+<li>
+<p><a href="setup/">Setup da Infra:</a> Configuração inicial dos buckets no storage.</p>
+</li>
+<li>
+<p><a href="landing/">Camada Landing:</a> Ingestão dos dados originais em formato JSON.</p>
+</li>
+<li>
+<p><a href="bronze/">Camada Bronze:</a> Tipagem colunar, armazenamento Delta e injeção de metadados.</p>
+</li>
+<li>
+<p><a href="silver/">Camada Silver:</a> Limpeza profunda, padronização e remoção de duplicatas.</p>
+</li>
+<li>
+<p><a href="gold/">Camada Gold:</a> Modelagem dimensional (Fato/Dimensão) para o painel analítico.</p>
+</li>
+</ul>
 
 
 
@@ -1024,13 +1258,13 @@
         
         
           
-          <a href="landing/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Origem → Landing">
+          <a href="setup/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Setup Infraestrutura">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Próximo
               </span>
               <div class="md-ellipsis">
-                Origem → Landing
+                Setup Infraestrutura
               </div>
             </div>
             <div class="md-footer__button md-icon">

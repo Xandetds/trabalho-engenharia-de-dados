@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../landing/">
+        <link rel="prev" href="../medallion/">
       
       
-        <link rel="next" href="../silver/">
+        <link rel="next" href="../../setup/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Landing → Bronze - Engenharia de Dados · SATC</title>
+        <title>Orquestração - Engenharia de Dados · SATC</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#landing-para-camada-bronze" class="md-skip">
+        <a href="#orquestracao-com-apache-airflow" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Landing → Bronze
+              Orquestração
             
           </span>
         </div>
@@ -242,11 +242,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../architecture/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -286,13 +288,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../pipeline/" class="md-tabs__link">
           
   
   
@@ -430,6 +430,8 @@
       
   
   
+    
+  
   
   
     
@@ -449,22 +451,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../architecture/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -482,13 +485,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -508,7 +511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   
@@ -536,7 +539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/medallion/" class="md-nav__link">
+      <a href="../medallion/" class="md-nav__link">
         
   
   
@@ -561,10 +564,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../architecture/orchestration/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orquestração
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -580,6 +610,72 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Nesta página">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Nesta página
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-dag-tse_medallion_papermill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A DAG: tse_medallion_papermill
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-papel-do-papermill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O Papel do Papermill
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-do-container-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuração do Container (Docker)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-executar-pelo-airflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como Executar pelo Airflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -732,8 +828,6 @@
       
   
   
-    
-  
   
   
     
@@ -757,23 +851,22 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../pipeline/" class="md-nav__link ">
               
   
   
@@ -791,13 +884,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -817,7 +910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/" class="md-nav__link">
+      <a href="../../pipeline/setup/" class="md-nav__link">
         
   
   
@@ -845,7 +938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../landing/" class="md-nav__link">
+      <a href="../../pipeline/landing/" class="md-nav__link">
         
   
   
@@ -870,37 +963,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Landing → Bronze
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../pipeline/bronze/" class="md-nav__link">
         
   
   
@@ -916,95 +982,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="Nesta página">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Nesta página
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#transformacoes-e-metadados" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Transformações e Metadados
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Transformações e Metadados">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#exemplo-de-processamento" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Exemplo de Processamento:
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Exemplo de Processamento:">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#leitura-do-json-bruto" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Leitura do JSON bruto
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adicao-de-metadados-de-governanca" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Adição de metadados de governança
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#escrita-em-formato-delta-lake" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Escrita em formato Delta Lake
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1017,7 +994,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../silver/" class="md-nav__link">
+      <a href="../../pipeline/silver/" class="md-nav__link">
         
   
   
@@ -1045,7 +1022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../gold/" class="md-nav__link">
+      <a href="../../pipeline/gold/" class="md-nav__link">
         
   
   
@@ -1256,28 +1233,47 @@
   
 
 
-<h1 id="landing-para-camada-bronze">Landing para Camada Bronze<a class="headerlink" href="#landing-para-camada-bronze" title="Permanent link">&para;</a></h1>
-<p>A <em>Camada Bronze</em> é onde os dados brutos da Landing Zone são convertidos para um formato colunar de alta performance (<em>Delta Lake</em>) e recebem os primeiros metadados essenciais para rastreabilidade e governança.</p>
-<h2 id="transformacoes-e-metadados">Transformações e Metadados<a class="headerlink" href="#transformacoes-e-metadados" title="Permanent link">&para;</a></h2>
-<p>O notebook 02_bronze.ipynb utiliza o <em>PySpark</em> para processar os arquivos JSON. O schema original é mantido, mas as seguintes colunas de metadados são injetadas em todas as tabelas:</p>
+<h1 id="orquestracao-com-apache-airflow">Orquestração com Apache Airflow<a class="headerlink" href="#orquestracao-com-apache-airflow" title="Permanent link">&para;</a></h1>
+<p>Este documento detalha como o Apache Airflow é utilizado no projeto para automatizar e monitorar a execução da nossa esteira de dados (Medallion Architecture).</p>
+<p>Em vez de convertermos nossos Jupyter Notebooks em scripts Python puros, adotamos uma abordagem de orquestração direta utilizando a biblioteca <strong>Papermill</strong>. Isso nos permite manter a interatividade do desenvolvimento em notebooks enquanto garantimos a confiabilidade da execução em produção.</p>
+<hr />
+<h2 id="a-dag-tse_medallion_papermill">A DAG: <code>tse_medallion_papermill</code><a class="headerlink" href="#a-dag-tse_medallion_papermill" title="Permanent link">&para;</a></h2>
+<p>A DAG (Directed Acyclic Graph) principal do projeto foi configurada para refletir exatamente a ordem lógica de dependência das camadas do nosso Data Lake. </p>
+<p>Ela executa os notebooks de forma estritamente sequencial. Se uma etapa falhar (por exemplo, a extração da Landing), as etapas subsequentes não serão iniciadas, protegendo a integridade das camadas Silver e Gold.</p>
+<p><strong>Ordem de Execução:</strong>
+1. <code>run_00_setup_buckets</code>
+2. <code>run_01_landing</code>
+3. <code>run_02_bronze</code>
+4. <code>run_03_silver</code>
+5. <code>run_04_gold</code></p>
+<hr />
+<h2 id="o-papel-do-papermill">O Papel do Papermill<a class="headerlink" href="#o-papel-do-papermill" title="Permanent link">&para;</a></h2>
+<p>O <strong>Papermill</strong> é a ferramenta que atua como ponte entre o Airflow e os notebooks. Ele parametriza e executa os arquivos <code>.ipynb</code> por baixo dos panos. </p>
+<p>As principais vantagens e configurações adotadas no nosso código (<code>dags/tse_medallion_papermill.py</code>) incluem:</p>
 <ul>
-<li>data_hora_bronze: Timestamp exato do momento em que o dado foi processado nesta camada.</li>
-<li>fonte_dados: String indicando a origem exata do dado (ex: landing.tse.candidatura).</li>
+<li><strong>Injeção de Parâmetros:</strong> O Airflow passa automaticamente variáveis de contexto para os notebooks durante a execução, como o <code>airflow_run_id</code> e o <code>airflow_logical_date</code>.</li>
+<li><strong>Isolamento do Spark (<code>SPARK_SCRATCH</code>):</strong> Para evitar que os arquivos temporários do Spark (como <code>spark-warehouse/</code> ou <code>metastore_db</code>) poluam o diretório principal do projeto, a execução do Papermill é direcionada para um diretório temporário isolado (<code>/tmp/spark-scratch</code>).</li>
+<li><strong>Geração de Evidências (<code>OUTPUT_DIR</code>):</strong> Cada execução bem-sucedida ou falha gera uma cópia do notebook com as células executadas (contendo os logs e resultados). Esses arquivos são salvos em um volume nomeado (<code>/opt/airflow/papermill-output</code>), servindo como um histórico de auditoria perfeito para debug. O formato do arquivo de saída segue o padrão: <code>&lt;data_logica&gt;_&lt;run_id&gt;.ipynb</code>.</li>
 </ul>
-<h3 id="exemplo-de-processamento">Exemplo de Processamento:<a class="headerlink" href="#exemplo-de-processamento" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql.functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">current_timestamp</span><span class="p">,</span> <span class="n">lit</span>
-</span></code></pre></div>
-<h4 id="leitura-do-json-bruto">Leitura do JSON bruto<a class="headerlink" href="#leitura-do-json-bruto" title="Permanent link">&para;</a></h4>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">df_candidatura</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;multiline&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s2">&quot;s3a://landing/tse/candidatura.json&quot;</span><span class="p">)</span>
-</span></code></pre></div>
-<h4 id="adicao-de-metadados-de-governanca">Adição de metadados de governança<a class="headerlink" href="#adicao-de-metadados-de-governanca" title="Permanent link">&para;</a></h4>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">df_candidatura</span> <span class="o">=</span> <span class="n">df_candidatura</span> \
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;data_hora_bronze&quot;</span><span class="p">,</span> <span class="n">current_timestamp</span><span class="p">())</span> \
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;fonte_dados&quot;</span><span class="p">,</span> <span class="n">lit</span><span class="p">(</span><span class="s2">&quot;landing.tse.candidatura&quot;</span><span class="p">))</span>
-</span></code></pre></div>
-<h4 id="escrita-em-formato-delta-lake">Escrita em formato Delta Lake<a class="headerlink" href="#escrita-em-formato-delta-lake" title="Permanent link">&para;</a></h4>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">df_candidatura</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;delta&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;s3a://bronze/tse/candidatura&quot;</span><span class="p">)</span>
-</span></code></pre></div>
+<hr />
+<h2 id="configuracao-do-container-docker">Configuração do Container (Docker)<a class="headerlink" href="#configuracao-do-container-docker" title="Permanent link">&para;</a></h2>
+<p>Para que o Airflow conseguisse executar notebooks que utilizam PySpark e Delta Lake, a imagem oficial do Apache Airflow precisou ser estendida (<code>docker/Dockerfile.airflow</code>).</p>
+<p>As seguintes dependências foram incorporadas ao container do Airflow:</p>
+<ul>
+<li><strong>Java (JRE):</strong> Necessário para a Máquina Virtual Java (JVM) executar as rotinas do Apache Spark.</li>
+<li><strong>Bibliotecas Python:</strong> Instalação do <code>papermill</code>, <code>ipykernel</code>, <code>pyspark</code>, <code>delta-spark</code> e <code>pymongo</code> via arquivo <code>airflow-requirements.txt</code>, garantindo que o Airflow tenha o mesmo ambiente de execução do Jupyter Lab.</li>
+</ul>
+<hr />
+<h2 id="como-executar-pelo-airflow">Como Executar pelo Airflow<a class="headerlink" href="#como-executar-pelo-airflow" title="Permanent link">&para;</a></h2>
+<p>Com a stack do Docker Compose rodando, siga os passos abaixo para acionar o pipeline completo:</p>
+<ol>
+<li>Acesse a interface web do Airflow no navegador: <strong><code>http://localhost:8080</code></strong>.</li>
+<li>Faça login utilizando as credenciais definidas no seu arquivo <code>.env</code> (o padrão local geralmente é usuário <code>admin</code> e senha <code>admin</code>).</li>
+<li>Na lista de DAGs, localize a <strong><code>tse_medallion_papermill</code></strong>.</li>
+<li>Clique no botão de <strong>"Unpause"</strong> (o toggle switch no canto esquerdo) para ativar a DAG.</li>
+<li>Clique no botão de <strong>"Trigger DAG"</strong> (ícone de play no canto direito) para iniciar a execução manual.</li>
+<li>Clique no nome da DAG e vá na aba <strong>Graph</strong> ou <strong>Grid</strong> para acompanhar o progresso de cada notebook em tempo real.</li>
+</ol>
 
 
 
@@ -1315,7 +1311,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
         
           
-          <a href="../landing/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Origem → Landing">
+          <a href="../medallion/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Medalhão (Camadas)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1325,20 +1321,20 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Origem → Landing
+                Medalhão (Camadas)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../silver/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Bronze → Silver">
+          <a href="../../setup/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Guia de Setup do Ambiente">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Próximo
               </span>
               <div class="md-ellipsis">
-                Bronze → Silver
+                Guia de Setup do Ambiente
               </div>
             </div>
             <div class="md-footer__button md-icon">
