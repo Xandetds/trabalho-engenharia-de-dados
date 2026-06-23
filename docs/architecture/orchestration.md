@@ -38,6 +38,7 @@ As principais vantagens e configurações adotadas no nosso código (`dags/tse_m
 Para que o Airflow conseguisse executar notebooks que utilizam PySpark e Delta Lake, a imagem oficial do Apache Airflow precisou ser estendida (`docker/Dockerfile.airflow`).
 
 As seguintes dependências foram incorporadas ao container do Airflow:
+
 * **Java (JRE):** Necessário para a Máquina Virtual Java (JVM) executar as rotinas do Apache Spark.
 * **Bibliotecas Python:** Instalação do `papermill`, `ipykernel`, `pyspark`, `delta-spark` e `pymongo` via arquivo `airflow-requirements.txt`, garantindo que o Airflow tenha o mesmo ambiente de execução do Jupyter Lab.
 
