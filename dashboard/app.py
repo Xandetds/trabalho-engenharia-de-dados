@@ -3,14 +3,6 @@ import plotly.express as px
 import pandas as pd
 
 from gold_reader import read_gold_table_records
-from kpis import (
-    calculate_assets_by_party,
-    calculate_candidates_by_office,
-    calculate_total_candidates,
-    calculate_total_declared_assets,
-    calculate_total_municipalities,
-    calculate_total_parties,
-)
 
 st.set_page_config(
     page_title="Dashboard TSE",
@@ -72,18 +64,32 @@ def format_brl(value) -> str:
 
 @st.cache_data(ttl=300)
 def load_data():
-    candidate_records = read_gold_table_records("fato_candidatura_dashboard")
-    asset_records = read_gold_table_records("fato_bem_candidato_dashboard")
-    office_records = read_gold_table_records("dim_cargo")
-    party_records = read_gold_table_records("dim_partido")
+    kpi_candidatos = read_gold_table_records("kpi_total_candidatos")
+    kpi_partidos = read_gold_table_records("kpi_total_partidos")
+    kpi_municipios = read_gold_table_records("kpi_total_municipios")
+    kpi_bens = read_gold_table_records("kpi_bens_declarados")
+    metrica_cargo = read_gold_table_records("metrica_candidatos_por_cargo")
+    metrica_partido = read_gold_table_records("metrica_patrimonio_por_partido")
 
     return {
-        "total_candidates": calculate_total_candidates(candidate_records),
-        "total_parties": calculate_total_parties(candidate_records),
-        "total_municipalities": calculate_total_municipalities(candidate_records),
-        "total_declared_assets": calculate_total_declared_assets(asset_records),
-        "candidates_by_office": calculate_candidates_by_office(candidate_records, office_records),
-        "assets_by_party": calculate_assets_by_party(candidate_records, asset_records, party_records),
+        "total_candidates": int(kpi_candidatos[0]["total_candidatos"]),
+        "total_parties": int(kpi_partidos[0]["total_partidos"]),
+        "total_municipalities": int(kpi_municipios[0]["total_municipios"]),
+        "total_declared_assets": float(kpi_bens[0]["valor_total_bens"]),
+        "candidates_by_office": [
+            {
+                "cargo": r["descricao_cargo"],
+                "total_candidatos": int(r["total_candidatos"]),
+            }
+            for r in sorted(metrica_cargo, key=lambda x: float(x["total_candidatos"]), reverse=True)
+        ],
+        "assets_by_party": [
+            {
+                "partido": r["sigla_partido"],
+                "patrimonio": float(r["patrimonio_declarado"]),
+            }
+            for r in sorted(metrica_partido, key=lambda x: float(x["patrimonio_declarado"]), reverse=True)
+        ],
     }
 
 
@@ -131,11 +137,7 @@ try:
     with chart_right:
         st.markdown("**Patrimonio por partido**")
         if data["assets_by_party"]:
-            top_parties = data["assets_by_party"][:10]
-            df_party = pd.DataFrame([
-                {"partido": item["partido"], "patrimonio": float(item["patrimonio_declarado"])}
-                for item in top_parties
-            ])
+            df_party = pd.DataFrame(data["assets_by_party"])
             fig_party = px.bar(
                 df_party,
                 x="patrimonio",
