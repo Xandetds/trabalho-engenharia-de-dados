@@ -38,6 +38,14 @@ O fluxo de dados foi desenhado seguindo a Arquitetura Medalhão (Medallion Archi
 
 - **Poetry & MkDocs:** Gerenciador de ambientes virtuais e gerador do portal estático.
 
+## Pré-requisitos
+
+- **Docker** e **Docker Compose v2+**
+- **Python 3.11** (PySpark 3.5.3 requer Python ≤ 3.12)
+- **Poetry** — para rodar o MkDocs localmente
+- **Conta no MongoDB Atlas** com string de conexão (origem dos dados)
+- **Git**
+
 ## Como Executar o Projeto
 Antes de começar, certifique-se de ter o Docker e o Docker Compose instalados na sua máquina de desenvolvimento.
 
@@ -85,6 +93,45 @@ poetry run mkdocs serve
 ```
 
 - Acesse http://127.0.0.1:8000 para ler o portal completo com diagramas interativos.
+
+## Estrutura do Projeto
+
+```
+trabalho-engenharia-de-dados/
+├── docker-compose.yml          # Orquestra Jupyter, MinIO, Airflow e Streamlit
+├── docker/
+│   └── Dockerfile              # Imagem base do ambiente Spark
+├── .env.example                # Template de variáveis de ambiente
+├── .python-version             # Python 3.11
+├── pyproject.toml              # Dependências Python (Poetry)
+├── startup/
+│   └── 00_startup.py           # Script de inicialização do ambiente
+├── notebook/                   # Esteira Medalhão (executada via Airflow/Papermill)
+│   ├── 00_setup_buckets.ipynb  # Criação dos buckets no MinIO
+│   ├── 01_landing.ipynb        # Extração MongoDB Atlas → Landing (JSON)
+│   ├── 02_bronze.ipynb         # Landing → Bronze (Delta)
+│   ├── 03_silver.ipynb         # Bronze → Silver (limpeza/conformação)
+│   └── 04_gold.ipynb           # Silver → Gold (Star Schema)
+├── dashboard/                  # Aplicação Streamlit (One Page View)
+│   ├── app.py                  # Entrypoint do dashboard
+│   ├── gold_reader.py          # Leitura da camada Gold
+│   ├── kpis.py                 # Cálculo dos indicadores
+│   └── minio_connection.py     # Conexão com o MinIO
+├── docs/                       # Fontes da documentação (MkDocs)
+├── mkdocs.yml                  # Configuração do portal de docs
+└── README.md
+```
+
+## Conceitos Demonstrados
+
+- **Arquitetura Medalhão** (Landing → Bronze → Silver → Gold)
+- **Extração de dados NoSQL** (MongoDB Atlas) para um Data Lake
+- **Object Storage** S3-compatible (MinIO) como camada de armazenamento
+- **Delta Lake** como formato lakehouse com transações **ACID**
+- **Modelagem Dimensional** (Star Schema) na camada Gold
+- **Orquestração de pipelines** com Apache Airflow + Papermill
+- **Visualização analítica** em One Page View (Streamlit)
+- **Documentação como código** (MkDocs)
 
 ## Equipe
 
