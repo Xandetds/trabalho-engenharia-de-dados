@@ -63,7 +63,7 @@ with DAG(
     dag_id="tse_medallion_papermill",
     description="Executa notebooks do pipeline TSE com Papermill.",
     start_date=datetime(2026, 1, 1),
-    schedule=None,
+    schedule="0 2 * * *", # diária às 02:00
     catchup=False,
     tags=["engenharia-dados", "papermill", "tse"],
 ) as dag:
