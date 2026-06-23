@@ -1,96 +1,46 @@
-# Especificação Técnica do Ecossistema do Dashboard
-```mermaid
-graph LR
-    A[MongoDB Atlas <br> Nuvem] -->|Autenticação e Leitura| B(Jupyter Lab / Spark-Lab)
-    B -->|Processamento & Transformação| C[MinIO Storage <br> Camada Gold]
-    C -->|Leitura de Parquet/CSV| D(Streamlit Dashboard)
-    D -->|Exibição Visual| E[Navegador do Usuário]
+# Especificação Técnica do Dashboard (Camada de Visualização)
 
-    style A fill:#4DB33D,stroke:#333,stroke-width:2px,color:#fff
-    style B fill:#F37626,stroke:#333,stroke-width:2px,color:#fff
-    style C fill:#C72C48,stroke:#333,stroke-width:2px,color:#fff
-    style D fill:#FF4B4B,stroke:#333,stroke-width:2px,color:#fff
-    style E fill:#1E88E5,stroke:#333,stroke-width:2px,color:#fff
-```
-Este documento detalha o funcionamento técnico, a arquitetura de contêineres, as ferramentas de engenharia empregadas (incluindo o pipeline de notebooks) e os procedimentos operacionais para compilar e executar o painel em ambiente local.
+Este documento detalha a arquitetura técnica, as ferramentas de desenvolvimento e a estrutura de código utilizadas exclusivamente para a construção e execução do **Dashboard TSE**.
+
+>  **Lembrete Importante:** Para que o dashboard funcione corretamente, é necessário que toda a infraestrutura conteinerizada tenha sido inicializada previamente através do comando `docker-compose up -d --build` na raiz do projeto. Após o deploy dos containers, o painel interativo estará disponível para visualização no endereço: **[http://localhost:8501](http://localhost:8501)**.
 
 ---
 
-## 1. Estrutura de Desenvolvimento e Arquitetura do Projeto
+##  Stack Tecnológica do Dashboard
 
-Uma das principais características deste projeto foi a adoção de um modelo de desenvolvimento descentralizado e isolado. Cada componente da solução foi construído através de uma **branch dedicada de funcionalidades (feature branch)**, garantindo que as frentes de trabalho avançassem em paralelo sem gerar conflitos prematuros no repositório principal (`master`).
-
-### A Dinâmica das Branches:
-* **Branch do Dashboard (Feature 48):** Onde toda a lógica visual, componentes do Streamlit e algoritmos de agregação de gráficos foram construídos na One Page View final.
-* **Branch de Documentação (Feature 58):** Onde o ecossistema Docker foi unificado, as redes e permissões foram calibradas, e este guia técnico foi estruturado.
-
-Essa abordagem de desenvolvimento distribuído exige que o ambiente local seja inicializado seguindo uma ordem restrita de dependências técnicas para que os dados fluam corretamente.
-
----
-
-## 2. O Pipeline de Processamento (Jupyter Notebooks)
-
-Antes de o dashboard exibir qualquer informação na tela, os dados brutos passam por um processo rigoroso de tratamento estruturado dentro do ambiente do **Jupyter Lab (Spark-Lab)**. Os notebooks do projeto atuam como os motores de transformação da nossa arquitetura de dados.
-
-### Papel dos Notebooks no Fluxo:
-1. **Consumo da Camada Raw/Ingestão:** Os notebooks conectam-se às fontes brutas e extraem dados de transações e metadados direto para o ecossistema.
-2. **Conexão com o MongoDB Atlas:** Através da biblioteca `pymongo`, os notebooks autenticam-se de forma segura na nuvem usando uma URI parametrizada para ler e validar coleções estruturadas.
-3. **Escrita na Camada Gold (MinIO):** Utilizando o poder do PySpark ou Pandas, as transformações finais de negócio ocorrem e as tabelas resultantes são salvas como arquivos de performance (como Parquet ou CSV) dentro da árvore de diretórios local do MinIO no caminho específico: `gold/tse/fato_candidatura_dashboard/`.
-
----
-
-## 3. Tecnologias Utilizadas na Stack Técnica
+O aplicativo de visualização foi construído de forma isolada do pipeline de dados, utilizando as seguintes tecnologias:
 
 * **Linguagem Base:** Python 3.11
-* **Interface Visual:** Streamlit
-* **Ambiente de Processamento:** Jupyter Lab com PySpark e PyMongo
-* **Gerenciador de Dependências:** Poetry / Pip
-* **Conteinerização:** Docker e Docker Compose
-* **Armazenamento Local:** MinIO Object Storage
-* **Armazenamento em Nuvem:** MongoDB Atlas Cloud
+* **Framework Web:** Streamlit (para renderização dos gráficos interativos e componentes de interface)
+* **Gerenciamento de Pacotes:** Poetry (garantindo um ambiente virtual isolado com `pyproject.toml` e `poetry.lock`)
+* **Consumo de Dados:** PyArrow / Pandas (para leitura rápida das tabelas Delta/Parquet já consolidadas)
 
 ---
 
-## 4. Requisitos de Ambiente (Variáveis do `.env`)
+##  Arquitetura e Modularização do Código
 
-O arquivo `.env` deve ser mantido estritamente na raiz do projeto (um nível acima da pasta `dashboard`). As credenciais não devem conter delimitadores como `<` ou `>` para evitar quebras de autenticação nos interpretadores:
+O código do dashboard foi componentizado dentro do diretório `dashboard/` para facilitar a manutenção e garantir uma boa organização de software:
 
-```env
-# ==========================================
-# INSTRUÇÕES PARA NOVOS DESENVOLVEDORES:
-# 1. Faça uma cópia deste arquivo e renomeie para ".env"
-# 2. Configure seu usuário no mongo atlas
-# 3. Substitua as tags <seu_usuario> e <sua_senha> pelas suas credenciais reais
-# ==========================================
+* **`app.py`:** Ponto de entrada do aplicativo. Gerencia o layout principal da página (One Page View), as barras laterais de filtros e a renderização final dos blocos visuais.
+* **`kpis.py`:** Módulo isolado responsável pelo cálculo e formatação dos 4 indicadores principais exibidos nos cards do topo (Total de Candidatos, Total de Partidos, Total de Municípios e Bens Declarados).
+* **`gold_reader.py`:** Camada de acesso a dados que faz as consultas e queries nas tabelas da camada Gold, aplicando os filtros selecionados pelo usuário na interface.
+* **`minio_connection.py`:** Gerencia a conexão segura do Streamlit com o servidor local do MinIO utilizando as credenciais contidas no arquivo `.env`.
 
-MONGO_URI=mongodb+srv://<seu_usuario>:<sua_senha>@trabalho-final-engenhar.fj4mcny.mongodb.net/?appName=trabalho-final-engenharia-dados
-MONGO_DB_NAME=trabalho-final-engenharia-dados
+---
 
-MINIO_ENDPOINT=http://minio:9000
-MINIO_ACCESS_KEY=<minio-access-key>
-MINIO_SECRET_KEY=<minio-secret-key>
+##  Containerização e Portas
 
-# URL do MinIO para uso no Dashboard quando rodado localmente (quando rodado via Docker a URL é definida no docker-compose.yml)
-MINIO_DASHBOARD_ENDPOINT=http://localhost:9020
-```
-## 5. Manual de Execução Local (Passo a Passo)
-Siga este procedimento lógico em seu terminal PowerShell para construir a infraestrutura do zero, gerar a massa de dados e visualizar o painel analítico.
+O dashboard roda dentro de um container Docker dedicado, configurado para subir automaticamente junto com a stack do projeto.
 
-#### Passo 1: Inicializando os Serviços Principais e Jupyter
-A partir do diretório raiz do projeto (trabalho-engenharia-de-dados), suba os serviços base de infraestrutura e processamento:
+* **Porta Padrão:** `8501` (Acessível localmente em `http://localhost:8501`)
+* **Mapeamento de Rede:** O container do dashboard conecta-se à rede interna do Compose para ler o MinIO diretamente através do endpoint configurado.
+* **Volume:** O diretório de código do dashboard é montado em modo de leitura para permitir atualizações em tempo real durante o desenvolvimento (*hot reload*).
 
-```
-# Garantir que instâncias antigas sejam removidas e redefinir o build
-docker-compose down
-docker-compose up -d --build
-```
-#### Passo 2: Executando os Notebooks no Jupyter
-Abra o navegador web no endereço: ```http://localhost:8888```
+---
 
-Acesse a pasta onde os notebooks desenvolvidos estão organizados.
+##  Estrutura de Consumo da Camada Gold
 
-Execute as células de todos os notebooks na ordem cronológica de desenvolvimento para disparar a autenticação com o MongoDB Atlas, processar os dados eleitorais e estruturar o bucket gold automaticamente dentro do MinIO.
+O dashboard não faz nenhum tratamento pesado ou limpeza de dados. Ele assume que os dados estão 100% limpos e consome diretamente as seguintes tabelas estruturadas do bucket `gold`:
 
-## 6. Monitoramento Operacional
-Uma vez que o pipeline de notebooks concluiu a carga dos dados e o container do dashboard já foi inicializado pelo Compose, a interface gráfica estará disponível de forma contínua em seu navegador através do link:
-```http://localhost:8501```
+1. **`fato_candidatura_dashboard`** e **`fato_bem_candidato_dashboard`** para gerar volumetrias e somatórios de patrimônio.
+2. **`dim_cargo`**, **`dim_partido`** e **`dim_municipio`** para alimentar os componentes de filtros da barra lateral.
