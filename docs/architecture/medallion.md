@@ -29,7 +29,7 @@ Camada de **limpeza e padronização**. Aqui acontecem a deduplicação, a tipag
 
 ## Gold
 
-Camada de **consumo**. Os dados da Silver são agregados e modelados de acordo com as perguntas de negócio, materializando os KPIs e métricas que alimentam o [dashboard](../dashboard/index.md). É a camada mais próxima do usuário final e a de menor granularidade.
+Camada de **consumo**. Os dados da Silver são agregados e modelados de acordo com as perguntas de negócio, materializando os KPIs e métricas que alimentam o [dashboard](../dashboard.md). É a camada mais próxima do usuário final e a de menor granularidade.
 
 ## Resumo das camadas
 
