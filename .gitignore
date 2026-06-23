@@ -24,3 +24,11 @@ notebook/.ipynb_checkpoints/**/*
 
 # Dados brutos locais (não versionar)
 data/landing/
+
+# Papermill outputs
+notebook/output/
+
+# Airflow local state
+logs/
+airflow.db
+airflow-webserver.pid
