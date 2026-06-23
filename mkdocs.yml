@@ -60,7 +60,10 @@ nav:
     - Landing → Bronze: pipeline/bronze.md
     - Bronze → Silver: pipeline/silver.md
     - Silver → Gold: pipeline/gold.md
-  - Dashboard: dashboard.md
+  - Dashboard: 
+    - Introdução: dashboard/index.md
+    - Explicação de Negócio: dashboard/business.md
+    - Explicação Técnica: dashboard/technical.md
   - Equipe: team.md
 
 markdown_extensions:
