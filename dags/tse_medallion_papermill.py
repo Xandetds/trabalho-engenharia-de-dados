@@ -25,6 +25,7 @@ NOTEBOOK_SEQUENCE = [
     "02_bronze.ipynb",
     "03_silver.ipynb",
     "04_gold.ipynb",
+    "05_kpis.ipynb",
 ]
 
 
