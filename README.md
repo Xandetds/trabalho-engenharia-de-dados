@@ -139,7 +139,7 @@ Abaixo encontra-se a estrutura de governança, ocupação e os links diretos par
 
 | Integrante | Ocupação | Links de Contato |
 | :--- | :--- | :--- |
-| **Alexandre Tibes da Silva** | Analista de Suporte e Implantação |  [GitHub](https://github.com/Xandetds) |
+| **Alexandre Tibes da Silva** | Desenvolvedor JR |  [GitHub](https://github.com/Xandetds) \| [LinkedIn](https://linkedin.com/in/alexandre-tibes) |
 | **Bruno Monteiro Bonifacio** | Desenvolvedor JR |  [GitHub](https://github.com/brunomonteirobonifacio) \| [LinkedIn](https://www.linkedin.com/in/bruno-monteiro-bonif%C3%A1cio-257338272/) |
 | **Gianluca Andrade Silvestre** | Desenvolvedor PL |  [GitHub](https://github.com/GiaNinWorld) \| [LinkedIn](https://www.linkedin.com/in/gianluca-andrade-silvestre-6205622b8/) |
 | **Gustavo de Freitas Cardoso** | Produção de Persianas |  [GitHub](https://github.com/GustavodeFreitasCardoso) |
