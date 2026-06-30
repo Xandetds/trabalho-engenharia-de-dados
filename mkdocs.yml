@@ -50,17 +50,22 @@ nav:
     - architecture/index.md
     - Visão Geral: architecture/overview.md
     - Medalhão (Camadas): architecture/medallion.md
+    - Orquestração: architecture/orchestration.md
   - Setup:
     - setup/index.md
     - Pré-requisitos: setup/prerequisites.md
     - Rodando o Projeto: setup/running.md
   - Pipeline:
     - pipeline/index.md
+    - Setup Infraestrutura: pipeline/setup.md
     - Origem → Landing: pipeline/landing.md
     - Landing → Bronze: pipeline/bronze.md
     - Bronze → Silver: pipeline/silver.md
     - Silver → Gold: pipeline/gold.md
-  - Dashboard: dashboard.md
+  - Dashboard: 
+    - Introdução: dashboard/index.md
+    - Explicação de Negócio: dashboard/business.md
+    - Explicação Técnica: dashboard/technical.md
   - Equipe: team.md
 
 markdown_extensions:

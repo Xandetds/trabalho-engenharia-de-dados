@@ -16,6 +16,12 @@ EXPECTED_GOLD_TABLES = (
     "dim_partido",
     "dim_cargo",
     "dim_municipio",
+    "kpi_total_candidatos",
+    "kpi_total_partidos",
+    "kpi_total_municipios",
+    "kpi_bens_declarados",
+    "metrica_candidatos_por_cargo",
+    "metrica_patrimonio_por_partido",
 )
 
 

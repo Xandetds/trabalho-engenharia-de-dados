@@ -1,8 +1,8 @@
 # Arquitetura
 
-O projeto adota uma arquitetura Lakehouse: o Apache Spark (via PySpark) como motor de processamento, o Delta Lake como formato transacional das tabelas e o MinIO como armazenamento de objetos, tendo o MongoDB Atlas como origem dos dados.
+O projeto adota uma arquitetura Lakehouse: o Apache Spark via PySpark atua como motor de processamento, o Delta Lake como formato transacional das tabelas e o MinIO como armazenamento de objetos, tendo o MongoDB Atlas como origem dos dados.
 
-O desenvolvimento acontece num ambiente containerizado com Jupyter Lab, onde os notebooks são criados e testados, e posteriormente convertidos em DAGs do Apache Airflow.
+O desenvolvimento acontece num ambiente containerizado com Jupyter Lab, onde os notebooks são criados e testados A orquestracao fica no Apache Airflow: cada tarefa da DAG executa um notebook com Papermill e salva uma cópia executada como evidência da etapa.
 
 Esta seção descreve as decisões de arquitetura do projeto: as tecnologias que compõem o ambiente e como os dados fluem entre as camadas até chegarem ao dashboard.
 

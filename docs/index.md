@@ -24,7 +24,7 @@
 
     4 KPIs e 2 métricas visualizados em painel One Page View consumindo direto da camada Gold.
 
-    [:octicons-arrow-right-24: Ver dashboard](dashboard.md)
+    [:octicons-arrow-right-24: Ver dashboard](dashboard/index.md)
 
 -   :material-account-group:{ .lg .middle } **Equipe**
 
