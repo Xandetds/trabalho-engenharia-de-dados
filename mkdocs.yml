@@ -62,7 +62,8 @@ nav:
     - Landing → Bronze: pipeline/bronze.md
     - Bronze → Silver: pipeline/silver.md
     - Silver → Gold: pipeline/gold.md
-  - Dashboard: 
+    - Histórico (SCD Tipo 2): pipeline/scd2.md
+  - Dashboard:
     - Introdução: dashboard/index.md
     - Explicação de Negócio: dashboard/business.md
     - Explicação Técnica: dashboard/technical.md
